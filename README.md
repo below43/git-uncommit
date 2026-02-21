@@ -20,7 +20,7 @@ Equivalent to:
 
 ### Homebrew
 
-    brew tap YOURNAME/git-tools
+    brew tap below43/git-tools
     brew install git-uncommit
 
 ## Why?

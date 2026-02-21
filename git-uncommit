@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+set -e
+
+show_help() {
+  echo "git-uncommit - Undo last commit(s) but keep changes staged"
+  echo ""
+  echo "Usage:"
+  echo "  git uncommit        Undo last commit"
+  echo "  git uncommit 3      Undo last 3 commits"
+  echo ""
+  echo "Equivalent to:"
+  echo "  git reset --soft HEAD~N"
+}
+
+# Help flag
+if [[ "$1" == "--help" ]] || [[ "$1" == "-h" ]]; then
+  show_help
+  exit 0
+fi
+
+# Default to 1 commit
+COUNT=${1:-1}
+
+# Validate number
+if ! [[ "$COUNT" =~ ^[0-9]+$ ]]; then
+  echo "Error: commit count must be a number"
+  echo ""
+  show_help
+  exit 1
+fi
+
+# Check git repo
+if ! git rev-parse --git-dir >/dev/null 2>&1; then
+  echo "Error: not a git repository"
+  exit 1
+fi
+
+echo "Undoing last $COUNT commit(s)..."
+git reset --soft HEAD~$COUNT

@@ -1,0 +1,16 @@
+# macOS / system files
+.DS_Store
+
+# Logs
+*.log
+
+# Editor/IDE
+.vscode/
+.idea/
+
+# Node/Python/other deps if any
+node_modules/
+__pycache__/
+
+# Release artifacts
+/release/*.tar.gz
